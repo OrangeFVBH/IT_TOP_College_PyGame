@@ -41,8 +41,9 @@ class Board:
                     self._cell_size,
                     self._cell_size
                 )
-                pg.draw.rect(screen, self.CELL_COLOR, rect, self.BORDER_WIDTH)
                 self.draw_cell(screen, row, col, rect)
+                pg.draw.rect(screen, self.CELL_COLOR, rect, self.BORDER_WIDTH)
+
 
     def draw_cell(self, screen: pg.Surface, row: int, col: int, rect: pg.Rect) -> None:
         ...
