@@ -151,7 +151,7 @@ class Minesweeper(Board):
             count_flags = 0
             for x in range(col - 1, col + 2):
                 for y in range(row - 1, row + 2):
-                    if self.get_cell(y, x) // 100 == 1:
+                    if self.get_cell(y, x) in (FLAG, FLAG + MINE):
                         count_flags += 1
             if count_flags == self._board[row][col]:
                 for x in range(col - 1, col + 2):
