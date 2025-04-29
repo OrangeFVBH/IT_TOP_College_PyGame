@@ -6,7 +6,7 @@ pg.init()
 SIZE = WIDTH, HEIGHT = 800, 600
 screen = pg.display.set_mode(SIZE)
 
-from src.coin import Coin, Bomb
+from src.coin import Coin, Bomb, Heart
 from src.kuplich import Kuplich
 from src.utils import load_image
 
@@ -34,6 +34,8 @@ while running:
         Coin(all_sprites, items_group)
     if random.random() < 0.005:
         Bomb(all_sprites, items_group)
+    if random.random() < 0.002:
+        Heart(all_sprites, items_group)
     all_sprites.draw(screen)
     all_sprites.update(events)
     player.collide(items_group)

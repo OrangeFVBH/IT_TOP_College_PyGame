@@ -48,6 +48,6 @@ class Bomb(Item):
 
 class Heart(Item):
     IMG = pg.transform.smoothscale(
-        load_image('bomb.webp'),
+        load_image('heart.png'),
         (40, 40))
     MASK = pg.mask.from_surface(IMG)

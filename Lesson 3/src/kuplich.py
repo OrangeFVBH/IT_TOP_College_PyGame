@@ -50,6 +50,10 @@ class Kuplich(pg.sprite.Sprite):
                     self._coins += 1
                 case 'Bomb':
                     self._health -= 5
+                case 'Heart':
+                    self._health += 5
+        if self._health <= 0:
+            self.kill()
 
     def update(self, events):
         for event in events:
