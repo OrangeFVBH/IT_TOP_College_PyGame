@@ -1,16 +1,16 @@
 import random
 
 import pygame as pg
-import pygame.sprite
 
 pg.init()
 SIZE = WIDTH, HEIGHT = 800, 600
 screen = pg.display.set_mode(SIZE)
 
 from my_sprite import Kuplich, Coin
+from utils import load_image
 
 FPS = 60
-BACKGROUND_COLOR = (0, 0, 0)
+BACKGROUND = pg.transform.smoothscale(load_image('back.png'), SIZE)
 
 clock = pg.time.Clock()
 running = True
@@ -21,19 +21,22 @@ player = Kuplich(all_sprites)
 player.rect.bottom = HEIGHT
 player.rect.centerx = WIDTH / 2
 
+font = pg.font.Font('data/Segoe UI Symbol.ttf', 50)
+
 while running:
     events = pg.event.get()
     for event in events:
         if event.type == pg.QUIT:
             running = False
-    screen.fill(BACKGROUND_COLOR)
-    # if random.random() < 0.2:
-    for _ in range(100):
+    screen.blit(BACKGROUND, (0, 0))
+    if random.random() < 0.02:
         Coin(all_sprites, coins_group)
     all_sprites.draw(screen)
     all_sprites.update(events)
-    collided = pygame.sprite.spritecollide(player, coins_group, True, pg.sprite.collide_mask)
+    player.collide_coins(coins_group)
 
+    screen.blit(font.render(player.coins, True, '#E5B700'), (10, 10))
+    screen.blit(font.render(player.health, True, '#E5000A'), (10, 60))
 
     pg.display.flip()
     clock.tick(FPS)

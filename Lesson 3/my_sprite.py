@@ -12,13 +12,27 @@ class Kuplich(pg.sprite.Sprite):
     IMG_FLIPPED = pg.transform.flip(IMG, True, False)
     MASK = pg.mask.from_surface(IMG)
     MASK_FLIPPED = pg.mask.from_surface(IMG_FLIPPED)
-    STEP = 5
+    STEP = 10
 
     def __init__(self, *groups):
         super().__init__(*groups)
         self.image = self.IMG
         self.mask = self.MASK
         self.rect = self.IMG.get_rect()
+        self._coins = 0
+        self._health = 100
+
+    @property
+    def coins(self):
+        return f'{self._coins} $'
+
+    @property
+    def health(self):
+        return f'{self._health} ❤'
+
+    def collide_coins(self, coins_group):
+        collided = pg.sprite.spritecollide(self, coins_group, True, pg.sprite.collide_mask)
+        self._coins += len(collided)
 
     def update(self, events):
         for event in events:
