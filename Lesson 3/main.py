@@ -6,8 +6,9 @@ pg.init()
 SIZE = WIDTH, HEIGHT = 800, 600
 screen = pg.display.set_mode(SIZE)
 
-from my_sprite import Kuplich, Coin
-from utils import load_image
+from src.coin import Coin
+from src.kuplich import Kuplich
+from src.utils import load_image
 
 FPS = 60
 BACKGROUND = pg.transform.smoothscale(load_image('back.png'), SIZE)
