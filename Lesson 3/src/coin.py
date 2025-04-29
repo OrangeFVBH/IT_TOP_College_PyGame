@@ -6,12 +6,10 @@ from .utils import load_image
 from .kuplich import Kuplich
 
 
-class Coin(pg.sprite.Sprite):
-    IMG  = pg.transform.smoothscale(
-        load_image('coin.png'),
-        (30, 30))
+class Item(pg.sprite.Sprite):
+    IMG = None
     SPEED = 8
-    MASK = pg.mask.from_surface(IMG)
+    MASK = None
 
     def __init__(self, *groups):
         super().__init__(*groups)
@@ -24,5 +22,19 @@ class Coin(pg.sprite.Sprite):
     def update(self, events):
         self.rect.y += self.SPEED
         if self.rect.top > 600:
-            self.kill()
-            Kuplich.get_instance().damage()
+            self.self_kill()
+
+    def self_kill(self):
+        self.kill()
+
+
+class Coin(Item):
+    IMG = pg.transform.smoothscale(
+        load_image('coin.png'),
+        (30, 30))
+    SPEED = 8
+    MASK = pg.mask.from_surface(IMG)
+
+    def self_kill(self):
+        super().kill()
+        Kuplich.get_instance().damage()
