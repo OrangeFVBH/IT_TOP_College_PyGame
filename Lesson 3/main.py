@@ -6,7 +6,7 @@ pg.init()
 SIZE = WIDTH, HEIGHT = 800, 600
 screen = pg.display.set_mode(SIZE)
 
-from src.coin import Coin
+from src.coin import Coin, Bomb
 from src.kuplich import Kuplich
 from src.utils import load_image
 
@@ -17,7 +17,7 @@ clock = pg.time.Clock()
 running = True
 
 all_sprites = pg.sprite.Group()
-coins_group = pg.sprite.Group()
+items_group = pg.sprite.Group()
 player = Kuplich(all_sprites)
 player.rect.bottom = HEIGHT
 player.rect.centerx = WIDTH / 2
@@ -31,10 +31,12 @@ while running:
             running = False
     screen.blit(BACKGROUND, (0, 0))
     if random.random() < 0.02:
-        Coin(all_sprites, coins_group)
+        Coin(all_sprites, items_group)
+    if random.random() < 0.005:
+        Bomb(all_sprites, items_group)
     all_sprites.draw(screen)
     all_sprites.update(events)
-    player.collide_coins(coins_group)
+    player.collide(items_group)
 
     screen.blit(font.render(player.coins, True, '#E5B700'), (10, 10))
     screen.blit(font.render(player.health, True, '#E5000A'), (10, 60))

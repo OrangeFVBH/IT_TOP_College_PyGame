@@ -32,9 +32,22 @@ class Coin(Item):
     IMG = pg.transform.smoothscale(
         load_image('coin.png'),
         (30, 30))
-    SPEED = 8
     MASK = pg.mask.from_surface(IMG)
 
     def self_kill(self):
         super().kill()
         Kuplich.get_instance().damage()
+
+
+class Bomb(Item):
+    IMG = pg.transform.smoothscale(
+        load_image('bomb.webp'),
+        (40, 40))
+    MASK = pg.mask.from_surface(IMG)
+
+
+class Heart(Item):
+    IMG = pg.transform.smoothscale(
+        load_image('bomb.webp'),
+        (40, 40))
+    MASK = pg.mask.from_surface(IMG)

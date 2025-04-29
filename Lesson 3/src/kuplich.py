@@ -43,9 +43,13 @@ class Kuplich(pg.sprite.Sprite):
             if self._health == 0:
                 self.kill()
 
-    def collide_coins(self, coins_group):
-        collided = pg.sprite.spritecollide(self, coins_group, True, pg.sprite.collide_mask)
-        self._coins += len(collided)
+    def collide(self, items_group):
+        for item in pg.sprite.spritecollide(self, items_group, True, pg.sprite.collide_mask):
+            match item.__class__.__name__:
+                case 'Coin':
+                    self._coins += 1
+                case 'Bomb':
+                    self._health -= 5
 
     def update(self, events):
         for event in events:
