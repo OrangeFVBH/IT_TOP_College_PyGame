@@ -44,6 +44,8 @@ class Kuplich(pg.sprite.Sprite):
                 self.kill()
 
     def collide(self, items_group):
+        if self._health <= 0:
+            return
         for item in pg.sprite.spritecollide(self, items_group, True, pg.sprite.collide_mask):
             match item.__class__.__name__:
                 case 'Coin':
