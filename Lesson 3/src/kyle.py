@@ -3,7 +3,7 @@ import random
 import pygame as pg
 
 from .utils import load_image
-from .kuplich import Kuplich
+from .cartman import Cartman
 
 
 class Item(pg.sprite.Sprite):
@@ -28,26 +28,26 @@ class Item(pg.sprite.Sprite):
         self.kill()
 
 
-class Coin(Item):
+class Kyle(Item):
     IMG = pg.transform.smoothscale(
-        load_image('coin.png'),
+        load_image('Kyle.webp'),
         (30, 30))
     MASK = pg.mask.from_surface(IMG)
 
     def self_kill(self):
         super().kill()
-        Kuplich.get_instance().damage()
+        Cartman.get_instance().damage()
 
 
-class Bomb(Item):
+class RKN(Item):
     IMG = pg.transform.smoothscale(
-        load_image('bomb.webp'),
+        load_image('RKN.png'),
         (40, 40))
     MASK = pg.mask.from_surface(IMG)
 
 
-class Heart(Item):
+class Chips(Item):
     IMG = pg.transform.smoothscale(
-        load_image('heart.png'),
+        load_image('Chips.png'),
         (40, 40))
     MASK = pg.mask.from_surface(IMG)

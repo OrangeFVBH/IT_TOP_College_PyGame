@@ -3,10 +3,10 @@ import pygame as pg
 from .utils import load_image
 
 
-class Kuplich(pg.sprite.Sprite):
+class Cartman(pg.sprite.Sprite):
     IMG = pg.transform.smoothscale(
-        load_image('kuplich.png'),
-        (300, 300))
+        load_image('Cartman.png'),
+        (180, 180))
     IMG_FLIPPED = pg.transform.flip(IMG, True, False)
     MASK = pg.mask.from_surface(IMG)
     MASK_FLIPPED = pg.mask.from_surface(IMG_FLIPPED)
@@ -48,11 +48,11 @@ class Kuplich(pg.sprite.Sprite):
             return
         for item in pg.sprite.spritecollide(self, items_group, True, pg.sprite.collide_mask):
             match item.__class__.__name__:
-                case 'Coin':
+                case 'Kyle':
                     self._coins += 1
-                case 'Bomb':
+                case 'RKN':
                     self._health -= 5
-                case 'Heart':
+                case 'Chips':
                     self._health += 5
         if self._health <= 0:
             self.kill()

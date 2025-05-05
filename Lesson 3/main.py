@@ -6,19 +6,19 @@ pg.init()
 SIZE = WIDTH, HEIGHT = 800, 600
 screen = pg.display.set_mode(SIZE)
 
-from src.coin import Coin, Bomb, Heart
-from src.kuplich import Kuplich
+from src.kyle import Kyle, RKN, Chips
+from src.cartman import Cartman
 from src.utils import load_image
 
 FPS = 60
-BACKGROUND = pg.transform.smoothscale(load_image('back.png'), SIZE)
+BACKGROUND = pg.transform.smoothscale(load_image('background.png'), SIZE)
 
 clock = pg.time.Clock()
 running = True
 
 all_sprites = pg.sprite.Group()
 items_group = pg.sprite.Group()
-player = Kuplich(all_sprites)
+player = Cartman(all_sprites)
 player.rect.bottom = HEIGHT
 player.rect.centerx = WIDTH / 2
 
@@ -31,11 +31,11 @@ while running:
             running = False
     screen.blit(BACKGROUND, (0, 0))
     if random.random() < 0.02:
-        Coin(all_sprites, items_group)
+        Kyle(all_sprites, items_group)
     if random.random() < 0.005:
-        Bomb(all_sprites, items_group)
+        RKN(all_sprites, items_group)
     if random.random() < 0.002:
-        Heart(all_sprites, items_group)
+        Chips(all_sprites, items_group)
     all_sprites.draw(screen)
     all_sprites.update(events)
     player.collide(items_group)

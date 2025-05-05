@@ -7,7 +7,7 @@ from utils import load_image
 
 class Kuplich(pg.sprite.Sprite):
     IMG = pg.transform.smoothscale(
-        load_image('kuplich.png'),
+        load_image('Cartman.png'),
         (150, 150))
 
     def __init__(self):
